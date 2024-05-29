@@ -6,6 +6,7 @@ class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _SignupScreenState createState() => _SignupScreenState();
 }
 
@@ -34,7 +35,7 @@ class _SignupScreenState extends State<Signup> {
     return Scaffold(
       appBar: AppBar(title: const Text('Sign Up')),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -78,7 +79,7 @@ class _SignupScreenState extends State<Signup> {
                           controller: _firstNameController,
                           decoration: InputDecoration(
                             labelText: 'First Name',
-                            prefixIcon: Icon(Icons.person),
+                            prefixIcon: const Icon(Icons.person),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -95,7 +96,7 @@ class _SignupScreenState extends State<Signup> {
                           controller: _lastNameController,
                           decoration: InputDecoration(
                             labelText: 'Last Name',
-                            prefixIcon: Icon(Icons.person),
+                            prefixIcon: const Icon(Icons.person),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -112,7 +113,7 @@ class _SignupScreenState extends State<Signup> {
                           controller: _emailController,
                           decoration: InputDecoration(
                             labelText: 'Email',
-                            prefixIcon: Icon(Icons.email),
+                            prefixIcon: const Icon(Icons.email),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -134,7 +135,7 @@ class _SignupScreenState extends State<Signup> {
                           controller: _passwordController,
                           decoration: InputDecoration(
                             labelText: 'Password',
-                            prefixIcon: Icon(Icons.lock),
+                            prefixIcon: const Icon(Icons.lock),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -159,7 +160,8 @@ class _SignupScreenState extends State<Signup> {
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Color.fromARGB(255, 230, 232, 235),
+                            foregroundColor:
+                                const Color.fromARGB(255, 230, 232, 235),
                             backgroundColor:
                                 const Color.fromARGB(255, 4, 21, 40),
                             padding: const EdgeInsets.symmetric(

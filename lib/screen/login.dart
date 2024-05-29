@@ -4,6 +4,7 @@ class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
@@ -17,13 +18,13 @@ class _LoginScreenState extends State<Login> {
     return Scaffold(
       appBar: AppBar(title: const Text('Login')),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
               Color.fromARGB(255, 7, 53, 90),
-              const Color.fromARGB(255, 5, 38, 88)
+              Color.fromARGB(255, 5, 38, 88)
             ],
           ),
         ),
@@ -52,7 +53,8 @@ class _LoginScreenState extends State<Login> {
                           ),
                         ),
                         keyboardType: TextInputType.emailAddress,
-                        style: TextStyle(fontSize: 14), // Taille de la police
+                        style: const TextStyle(
+                            fontSize: 14), // Taille de la police
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your email';
@@ -74,7 +76,8 @@ class _LoginScreenState extends State<Login> {
                           ),
                         ),
                         obscureText: true,
-                        style: TextStyle(fontSize: 14), // Taille de la police
+                        style: const TextStyle(
+                            fontSize: 14), // Taille de la police
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your password';

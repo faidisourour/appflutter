@@ -55,15 +55,15 @@ class Welcome extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, '/signup');
                 },
-                child: const Text('Sign Up'),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
-                  backgroundColor: Color.fromARGB(255, 28, 57, 184),
+                  backgroundColor: const Color.fromARGB(255, 28, 57, 184),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
                   textStyle: const TextStyle(fontSize: 18),
                 ),
+                child: const Text('Sign Up'),
               ),
             ),
           ],

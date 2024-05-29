@@ -273,7 +273,7 @@ class MyApp extends StatelessWidget {
 class RoomWidget extends StatelessWidget {
   final SmartHomeModel room;
 
-  RoomWidget({required this.room});
+  const RoomWidget({required this.room});
 
   @override
   Widget build(BuildContext context) {
@@ -294,35 +294,35 @@ class RoomWidget extends StatelessWidget {
               children: [
                 Text(
                   room.roomName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   room.userAccess > 2 ? 'Public' : 'Private',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Colors.grey,
                   ),
                 ),
                 if (room.sensor != null) ...[
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     "Temperature: ${room.sensor!.temperatureSensor}",
-                    style: TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 14),
                   ),
                   Text(
                     "Humidity: ${room.sensor!.humiditySensor}",
-                    style: TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 14),
                   ),
                   Text(
                     "Gas: ${room.sensor!.gasSensor}",
-                    style: TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 14),
                   ),
                   Text(
                     "Presence: ${room.sensor!.presenceDetector ? "Detected" : "Not Detected"}",
-                    style: TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 14),
                   ),
                 ],
               ],

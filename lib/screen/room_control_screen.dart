@@ -16,7 +16,7 @@ class RoomControlScreen extends StatefulWidget {
 class _RoomControlScreenState extends State<RoomControlScreen> {
   @override
   Widget build(BuildContext context) {
-    final SmartHomeModel roomData = this.widget.roomData;
+    final SmartHomeModel roomData = widget.roomData;
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -74,7 +74,7 @@ class _RoomControlScreenState extends State<RoomControlScreen> {
 
   Widget bottomCard(Size size, SmartHomeModel roomData) {
     return GlassMorphism(
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         height: size.height * 0.6,
         // color: AppColor.white.withOpacity(0.5),
@@ -182,7 +182,7 @@ class _RoomControlScreenState extends State<RoomControlScreen> {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   if (index == 0 || roomData.devices!.length + 1 == index) {
-                    return SizedBox(width: 10);
+                    return const SizedBox(width: 10);
                   }
                   final data = roomData.devices![index - 1];
                   return DeviceSwitch(data: data);
