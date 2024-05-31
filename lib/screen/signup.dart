@@ -155,7 +155,8 @@ class _SignupScreenState extends State<Signup> {
                           onPressed: () {
                             if (_formKey.currentState?.validate() ?? false) {
                               // Simulate a sign up process
-                              Navigator.pushReplacementNamed(context, '/home');
+                              Navigator.pushReplacementNamed(context,
+                                  '/login'); // Redirection vers la page de login
                             }
                           },
                           style: ElevatedButton.styleFrom(
