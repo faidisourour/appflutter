@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 import 'package:smart_home_flutter_ui/services/api_service.dart';
 
 class Signup extends StatefulWidget {
@@ -33,8 +32,7 @@ class _SignupScreenState extends State<Signup> {
     }
   }
 
-  Future<void> signup(
-      String firstName, String lastName, String email, String password) async {
+  Future<void> signup(String firstName, String lastName, String email, String password) async {
     try {
       final response = await http.post(
         Uri.parse('http://localhost:8080/api/auth/signup'),
@@ -191,7 +189,12 @@ class _SignupScreenState extends State<Signup> {
                         ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState?.validate() ?? false) {
-                              signupUser();
+                              signup(
+                                _firstNameController.text,
+                                _lastNameController.text,
+                                _emailController.text,
+                                _passwordController.text,
+                              );
                             }
                           },
                           style: ElevatedButton.styleFrom(
