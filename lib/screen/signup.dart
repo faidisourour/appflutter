@@ -191,12 +191,7 @@ class _SignupScreenState extends State<Signup> {
                         ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState?.validate() ?? false) {
-                              signup(
-                                _firstNameController.text,
-                                _lastNameController.text,
-                                _emailController.text,
-                                _passwordController.text,
-                              );
+                              signupUser();
                             }
                           },
                           style: ElevatedButton.styleFrom(
