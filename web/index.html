@@ -19,24 +19,31 @@
   </script>
 </head>
 <body>
+  <script src="flutter.js" defer></script>
   <script src="main.dart.js" defer></script>
   <script>
     if (navigator.serviceWorker && window.location.protocol === 'https:') {
       // Service worker registration
-      FlutterLoader.loadEntrypoint({
-        serviceWorker: 'flutter_service_worker.js?v=' + serviceWorkerVersion,
-      }).then((engineInitializer) => {
-        return engineInitializer.initializeEngine();
-      }).then((appRunner) => {
-        return appRunner.runApp();
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=' + serviceWorkerVersion).then((registration) => {
+          FlutterLoader.loadEntrypoint({
+            serviceWorker: registration
+          }).then((engineInitializer) => {
+            return engineInitializer.initializeEngine();
+          }).then((appRunner) => {
+            return appRunner.runApp();
+          });
+        });
       });
     } else {
-      FlutterLoader.load({
-        entrypoint: 'main.dart.js',
-      }).then((engineInitializer) => {
-        return engineInitializer.initializeEngine();
-      }).then((appRunner) => {
-        return appRunner.runApp();
+      window.addEventListener('load', function() {
+        FlutterLoader.loadEntrypoint({
+          entrypoint: 'main.dart.js'
+        }).then((engineInitializer) => {
+          return engineInitializer.initializeEngine();
+        }).then((appRunner) => {
+          return appRunner.runApp();
+        });
       });
     }
   </script>

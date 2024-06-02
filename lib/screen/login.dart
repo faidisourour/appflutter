@@ -1,13 +1,12 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:smart_home_flutter_ui/services/api_service.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key, required ApiService apiService}) : super(key: key);
+  const Login({Key? key, required APIService apiService}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
@@ -15,38 +14,6 @@ class _LoginScreenState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
-  Future<void> loginUser() async {
-    final email = _emailController.text;
-    final password = _passwordController.text;
-
-    try {
-      const url = 'http://192.168.1.18:8080/api/auth/login';
-      final response = await http.post(
-        Uri.parse(url),
-        body: {'email': email, 'password': password},
-      );
-
-      if (response.statusCode == 200) {
-        // Le login a réussi, traitez la réponse si nécessaire
-        // ignore: unused_local_variable
-        final token = response.body; // Obtenez le token JWT
-        // Naviguez vers la prochaine page ou effectuez toute autre logique
-      } else {
-        // Le login a échoué, affichez un message d'erreur
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Invalid email or password')),
-        );
-      }
-    } catch (error) {
-      // Gérez les erreurs
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('An error occurred. Please try again later.')),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +55,8 @@ class _LoginScreenState extends State<Login> {
                           ),
                         ),
                         keyboardType: TextInputType.emailAddress,
-                        style: const TextStyle(fontSize: 14),
+                        style: const TextStyle(
+                            fontSize: 14), // Taille de la police
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your email';
@@ -110,7 +78,8 @@ class _LoginScreenState extends State<Login> {
                           ),
                         ),
                         obscureText: true,
-                        style: const TextStyle(fontSize: 14),
+                        style: const TextStyle(
+                            fontSize: 14), // Taille de la police
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your password';
@@ -123,16 +92,13 @@ class _LoginScreenState extends State<Login> {
                       ),
                       const SizedBox(height: 8),
                       SizedBox(
-                        width: 200,
-                        height: 40,
+                        width: 200, // Largeur du bouton
+                        height: 40, // Hauteur du bouton
                         child: ElevatedButton(
-                          onPressed: () {
-                            if (_formKey.currentState?.validate() ?? false) {
-                              loginUser();
-                            }
-                          },
+                          onPressed: _login,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromARGB(255, 4, 21, 40),
+                            backgroundColor:
+                                const Color.fromARGB(255, 4, 21, 40),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
@@ -156,6 +122,29 @@ class _LoginScreenState extends State<Login> {
         ),
       ),
     );
+  }
+
+  void _login() async {
+    if (_formKey.currentState?.validate() ?? false) {
+      final email = _emailController.text;
+      final password = _passwordController.text;
+
+      // Faites l'appel à votre API de connexion ici
+      final response = await http.post(
+        Uri.parse('http://localhost:8080/api/auth/login'),
+        body: {'email': email, 'password': password},
+      );
+
+      if (response.statusCode == 200) {
+        // Si la connexion est réussie, naviguez vers l'écran d'accueil
+        Navigator.pushReplacementNamed(context, '/home');
+      } else {
+        // Si la connexion échoue, affichez un message d'erreur à l'utilisateur
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Invalid email or password')),
+        );
+      }
+    }
   }
 
   @override

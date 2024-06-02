@@ -1,14 +1,15 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:smart_home_flutter_ui/services/api_service.dart';
 
 class Signup extends StatefulWidget {
-  const Signup({Key? key, required ApiService apiService}) : super(key: key);
+  const Signup({Key? key, required APIService apiService}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _SignupScreenState createState() => _SignupScreenState();
 }
 
@@ -32,42 +33,36 @@ class _SignupScreenState extends State<Signup> {
     }
   }
 
-  Future<void> signupUser() async {
-    final firstName = _firstNameController.text;
-    final lastName = _lastNameController.text;
-    final email = _emailController.text;
-    final password = _passwordController.text;
-
+  Future<void> signup(
+      String firstName, String lastName, String email, String password) async {
     try {
-      const url = 'http://192.168.1.18:8080/api/auth/signup';
       final response = await http.post(
-        Uri.parse(url),
-        body: {
+        Uri.parse('http://localhost:8080/api/auth/signup'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(<String, String>{
           'firstname': firstName,
           'lastname': lastName,
           'email': email,
           'password': password,
-        },
+        }),
       );
 
       if (response.statusCode == 201) {
-        // Le signup a réussi, traitez la réponse si nécessaire
-        // Naviguez vers la prochaine page ou effectuez toute autre logique
-        // ignore: use_build_context_synchronously
-        Navigator.pushReplacementNamed(context, '/home');
+        // Signup successful, navigate to login screen
+        Navigator.pushReplacementNamed(context, '/login');
       } else {
-        // Le signup a échoué, affichez un message d'erreur
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Failed to sign up. Please try again.')),
-        );
+        // Signup failed, show error message
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Signup failed. Please try again later.'),
+        ));
       }
     } catch (error) {
-      // Gérez les erreurs
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('An error occurred. Please try again later.')),
-      );
+      print('Error during signup: $error');
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('An error occurred. Please try again later.'),
+      ));
     }
   }
 
@@ -196,7 +191,12 @@ class _SignupScreenState extends State<Signup> {
                         ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState?.validate() ?? false) {
-                              signupUser();
+                              signup(
+                                _firstNameController.text,
+                                _lastNameController.text,
+                                _emailController.text,
+                                _passwordController.text,
+                              );
                             }
                           },
                           style: ElevatedButton.styleFrom(

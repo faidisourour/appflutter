@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:smart_home_flutter_ui/services/api_service.dart';
 
 class Welcome extends StatelessWidget {
-  const Welcome({Key? key}) : super(key: key);
+  const Welcome({Key? key, required APIService apiService}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
