@@ -52,13 +52,13 @@ class _SignupScreenState extends State<Signup> {
         Navigator.pushReplacementNamed(context, '/login');
       } else {
         // Signup failed, show error message
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Signup failed. Please try again later.'),
         ));
       }
     } catch (error) {
       print('Error during signup: $error');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('An error occurred. Please try again later.'),
       ));
     }

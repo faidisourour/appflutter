@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_home_flutter_ui/services/api_service.dart';
 
 class Welcome extends StatelessWidget {
-  const Welcome({Key? key, required APIService apiService}) : super(key: key);
+  const Welcome({super.key, required APIService apiService});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,6 @@ class Welcome extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, '/login');
                 },
-                child: const Text('Login'),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.blue,
@@ -46,6 +45,7 @@ class Welcome extends StatelessWidget {
                   ),
                   textStyle: const TextStyle(fontSize: 18),
                 ),
+                child: const Text('Login'),
               ),
             ),
             const SizedBox(height: 10),

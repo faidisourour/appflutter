@@ -244,18 +244,20 @@ List<SmartHomeModel> smartHomeData = [
 ];
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('Smart Home')),
+        appBar: AppBar(title: const Text('Smart Home')),
         body: GridView.builder(
           padding: const EdgeInsets.all(10),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
@@ -273,7 +275,7 @@ class MyApp extends StatelessWidget {
 class RoomWidget extends StatelessWidget {
   final SmartHomeModel room;
 
-  const RoomWidget({required this.room});
+  const RoomWidget({super.key, required this.room});
 
   @override
   Widget build(BuildContext context) {

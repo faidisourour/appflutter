@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class Auth {
   static Future<bool> login(String email, String password) async {
     // Simulate a network request to authenticate the user
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     return email == 'user@example.com' && password == 'password';
   }
 
   static Future<bool> signup(String email, String password) async {
     // Simulate a network request to create a new user account
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     return true;
   }
 

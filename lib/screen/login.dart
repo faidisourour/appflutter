@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:smart_home_flutter_ui/services/api_service.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key, required APIService apiService}) : super(key: key);
+  const Login({super.key, required APIService apiService});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -137,11 +137,13 @@ class _LoginScreenState extends State<Login> {
 
       if (response.statusCode == 200) {
         // Si la connexion est réussie, naviguez vers l'écran d'accueil
+        // ignore: use_build_context_synchronously
         Navigator.pushReplacementNamed(context, '/home');
       } else {
         // Si la connexion échoue, affichez un message d'erreur à l'utilisateur
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Invalid email or password')),
+          const SnackBar(content: Text('Invalid email or password')),
         );
       }
     }

@@ -5,7 +5,7 @@ import 'package:smart_home_flutter_ui/main.dart';
 void main() {
   testWidgets('Verify login screen UI elements', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(const MyApp());
 
     // Verify that the login screen contains necessary UI elements
     expect(find.text('Login'), findsOneWidget); // Vérifie le titre "Login"

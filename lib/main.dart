@@ -7,10 +7,12 @@ import 'package:smart_home_flutter_ui/screen/welcome.dart';
 import 'package:smart_home_flutter_ui/services/api_service.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
