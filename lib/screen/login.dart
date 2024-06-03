@@ -131,7 +131,7 @@ class _LoginScreenState extends State<Login> {
 
       // Faites l'appel à votre API de connexion ici
       final response = await http.post(
-        Uri.parse('http://localhost:8080/api/auth/login'),
+        Uri.parse('http://10.0.2.2:8080/api/auth/login'),
         body: {'email': email, 'password': password},
       );
 

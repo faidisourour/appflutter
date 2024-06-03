@@ -35,7 +35,7 @@ class _SignupScreenState extends State<Signup> {
   Future<void> signup(String firstName, String lastName, String email, String password) async {
     try {
       final response = await http.post(
-        Uri.parse('http://localhost:8080/api/auth/signup'),
+        Uri.parse('http://10.0.2.2:8080/api/auth/signup'),
         headers: <String, String>{
           'Content-Type': 'application/json',
         },
