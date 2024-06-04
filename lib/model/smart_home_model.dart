@@ -6,6 +6,7 @@ class SmartHomeModel {
   String roomTemperature;
   int userAccess;
   bool roomStatus;
+   bool isOccupied;
   List<DeviceInRoom>? devices;
   Sensor? sensor;
 
@@ -15,6 +16,7 @@ class SmartHomeModel {
     required this.roomTemperature,
     required this.userAccess,
     this.roomStatus = false,
+    this.isOccupied = false,
     this.devices,
     this.sensor,
   });
@@ -180,7 +182,7 @@ List<SmartHomeModel> smartHomeData = [
   ),
   SmartHomeModel(
     roomName: "Server Room",
-    roomImage: "assets/images/kitchen_room.jpg",
+    roomImage: "assets/images/salle4.jpg",
     roomTemperature: "25°",
     userAccess: 2,
     roomStatus: true,
